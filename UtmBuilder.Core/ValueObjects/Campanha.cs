@@ -1,4 +1,6 @@
-﻿namespace UtmBuilder.Core.ValueObjects
+﻿using UtmBuilder.Core.ValueObjects.Exceptions;
+
+namespace UtmBuilder.Core.ValueObjects
 {
     public class Campanha : ValueObject
     {
@@ -14,6 +16,10 @@
 
         public Campanha(string source, string medium, string name, string? id = null, string? term = null, string? content = null)
         {
+            CampanhaInvalidaException.ThrowIfNull(source, "Source é invalida");
+            CampanhaInvalidaException.ThrowIfNull(medium, "Medium é invalida");
+            CampanhaInvalidaException.ThrowIfNull(name, "Name é invalida");
+
             Source = source;
             Medium = medium;
             Name = name;
